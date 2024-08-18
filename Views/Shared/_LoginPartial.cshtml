@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Supplier_SRM_MVC.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var currentUser = await UserManager.GetUserAsync(User);
+
+    <p>
+        Hello @currentUser!.Name!
+    </p>
+}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Supplier_SRM_MVC.Entities.Supplier>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Company Email</th>
+            <th>Company Phone Number</th>
+            <th>Registration Date</th>
+            <th>Is Confirmed</th>
+            <th>User</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var supplier in Model)
+        {
+            <tr>
+                <td>@supplier.CompanyName</td>
+                <td>@supplier.CompanyEmail</td>
+                <td>@supplier.CompanyPhoneNumber</td>
+                <td>@supplier.RegistrationDate.ToShortDateString()</td>
+                <td>
+                    @if (supplier.User != null)
+                    {
+                        @supplier.User.UserName
+                    }
+                    else
+                    {
+                        <p>"No User Assigned"</p>
+                    }
+                </td>
+                <form asp-controller="Manage" asp-action="ConfirmSupplier" method="post" asp-route-id="@supplier.Id">
+                    <button name="Да" value="true"></button>
+                    <button name="Нет" value="false"></button>
+                </form>
+                @* перенаправление к профилю *@
+                @* <td>
+                    <a asp-action="Details" asp-route-id="@supplier.Id" class="btn btn-info">Details</a>
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>

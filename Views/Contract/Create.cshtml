@@ -1,0 +1,31 @@
+﻿@model Supplier_SRM_MVC.Dto.ContractCreateDto
+
+<form asp-controller="Contract" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+        <input asp-for="StartDate" class="form-control" type="date" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+        <input asp-for="EndDate" class="form-control" type="date" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContractValue" class="control-label"></label>
+        <input asp-for="ContractValue" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="ContractValue" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TermsAndConditions" class="control-label"></label>
+        <input asp-for="TermsAndConditions" type="file" class="form-control" />
+        <span asp-validation-for="TermsAndConditions" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>

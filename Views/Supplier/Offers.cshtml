@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Supplier_SRM_MVC.Entities.Contract>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Contract Number</th>
+            <th>Customer</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Contract Value</th>
+            <th>Terms and Conditions</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contract in Model)
+        {
+            <tr>
+                <td>@contract.ContractNumber</td>
+                <td>
+                    @if (contract.Customer != null)
+                    {
+                        @contract.Customer.UserName
+                    }
+                    else
+                    {
+                        <p>"No Customer Assigned"</p>
+                    }
+                </td>
+                <td>@contract.StartDate.ToShortDateString()</td>
+                <td>@contract.EndDate.ToShortDateString()</td>
+                <td>@contract.ContractValue.ToString("C")</td>
+                <td>
+                    @if (contract.TermsAndConditions != null)
+                    {
+                        <a href="@Url.Action("DownloadFile", "Contracts", new { fileName = contract.TermsAndConditions.FileName })" target="_blank">View</a>
+                    }
+                    else
+                    {
+                        <p>"No File" </p>
+                    }
+                </td>
+                @* <td>
+                    <a asp-action="Details" asp-route-id="@contract.Id" class="btn btn-info">Details</a>
+                    <!-- Add additional actions as needed -->
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
